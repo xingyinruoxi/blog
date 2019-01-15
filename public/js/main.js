@@ -59,14 +59,21 @@ $(function() {
             
                 if (!result.code) {
                     //登录成功
-                    // window.location.reload();
-                    setTimeout(function() {
-                        $userInfo.show();
-		                $loginBox.hide();
-                    }, 1000);
+                    window.location.reload();
                 }
             }
         })
+    })
+    //退出
+    $('#layout').on('click',function(){
+        $.ajax({
+            url: '/api/user/layout',
+            success: function(result) {
+                if (!result.code) {
+                    window.location.reload();
+                }
+            }
+        });
     })
 
 

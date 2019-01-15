@@ -101,13 +101,18 @@ router.post('/user/login', function (req, res, next) {
             _id: userInfo._id,
             username: userInfo.username
         }
-        // req.cookies.set('userInfo', JSON.stringify({
-        //     _id: userInfo._id,
-        //     username: userInfo.username
-        // }));
+        req.cookies.set('userInfo', JSON.stringify({
+            _id: userInfo._id,
+            username: userInfo.username
+        }));
         res.json(responseData);
         return;
     })
+});
 
+//退出
+router.get('/user/layout', function (req, res) {
+    req.cookies.set('userInfo', null);
+    res.json(responseData);
 });
 module.exports = router;
