@@ -238,7 +238,7 @@ router.post('/category/edit', function (req, res) {
             });
             return Promise.reject();
         } else {
-            return Category.update({
+            return Category.updateOne({
                 _id: id
             }, {
                 name: name
@@ -262,7 +262,7 @@ router.get('/category/delete', function (req, res) {
     //获取要删除的分类的id
     var id = req.query.id || '';
 
-    Category.remove({
+    Category.deleteOne({
         _id: id
     }).then(function () {
         res.render('admin/success', {
@@ -423,7 +423,7 @@ router.post('/content/edit', function(req, res) {
         return;
     }
 
-    Content.update({
+    Content.updateOne({
         _id: id
     }, {
         category: req.body.category,
@@ -446,7 +446,7 @@ router.post('/content/edit', function(req, res) {
 router.get('/content/delete', function(req, res) {
     var id = req.query.id || '';
 
-    Content.remove({
+    Content.deleteOne({
         _id: id
     }).then(function() {
         res.render('admin/success', {
